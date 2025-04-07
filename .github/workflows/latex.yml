@@ -1,24 +1,26 @@
-name: Build LaTeX PDF
+name: Build thesis.pdf
 
 on:
   push:
+    paths:
+      - '**.tex'
+  pull_request:
     paths:
       - '**.tex'
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+    - name: Checkout repository
+      uses: actions/checkout@v3
 
-      - name: Compile LaTeX document
-        uses: dante-ev/latex-action@v2
-        with:
-          root_file: template/thesis.tex
+    - name: Install TeX Live
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y texlive-full
 
-      - name: Upload PDF artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: thesis-pdf
-          path: template/thesis.pdf
+    - name: Compile LaTeX
+      run: |
+        latexmk -pdf -interaction=nonstopmode -halt-on-error thesis.tex
