@@ -26,7 +26,7 @@ jobs:
         latexmk -pdf -interaction=nonstopmode -halt-on-error template/thesis.tex
 
     - name: Upload PDF
-      uses: ./github/actions/upload-artifact
+      uses: actions/upload-artifact@v3
       with:
         name: thesis-pdf
         path: template/thesis.pdf
