@@ -23,11 +23,11 @@ jobs:
 
     - name: Compile LaTeX
       run: |
-        latexmk -pdf -interaction=nonstopmode -halt-on-error thesis.tex
+        latexmk -pdf -interaction=nonstopmode -halt-on-error template/thesis.tex
 
     - name: Upload PDF
       uses: actions/upload-artifact@v3.1.3
       with:
         name: thesis-pdf
-        path: thesis.pdf
+        path: template/thesis.pdf
 
