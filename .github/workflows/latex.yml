@@ -3,10 +3,10 @@ name: Build thesis.pdf
 on:
   push:
     paths:
-      - '**.tex'
+      - '**/*.tex'
   pull_request:
     paths:
-      - '**.tex'
+      - '**/*.tex'
 
 jobs:
   build:
@@ -26,8 +26,7 @@ jobs:
         latexmk -pdf -interaction=nonstopmode -halt-on-error template/thesis.tex
 
     - name: Upload PDF
-      uses: actions/upload-artifact@v3.1.3
+      uses: ./github/actions/upload-artifact
       with:
         name: thesis-pdf
         path: template/thesis.pdf
-
