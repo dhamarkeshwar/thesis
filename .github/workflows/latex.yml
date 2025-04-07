@@ -15,7 +15,7 @@ jobs:
       - name: Compile LaTeX document
         uses: dante-ev/latex-action@v2
         with:
-          root_file: thesis.tex
+          root_file: template/thesis.tex
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v4
