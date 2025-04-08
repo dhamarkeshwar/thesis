@@ -4,9 +4,13 @@ on:
   push:
     paths:
       - '**/*.tex'
+      - '**/*.cls'
+      - '**/*.bib'
   pull_request:
     paths:
       - '**/*.tex'
+      - '**/*.cls'
+      - '**/*.bib'
 
 jobs:
   build:
