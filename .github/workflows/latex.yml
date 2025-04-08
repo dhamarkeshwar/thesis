@@ -29,9 +29,6 @@ jobs:
         root_file: template/thesis.tex
         working_directory: .
 
-    - name: Debug: Find the output PDF
-      run: find . -name "*.pdf"
-      
     - name: Upload PDF
       uses: actions/upload-artifact@v4
       with:
