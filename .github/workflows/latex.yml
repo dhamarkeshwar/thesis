@@ -14,19 +14,15 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
-
-    - name: Install TeX Live
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y texlive-full
+      uses: actions/checkout@v4
 
     - name: Compile LaTeX
-      run: |
-        latexmk -pdf -interaction=nonstopmode -halt-on-error template/thesis.tex
+      uses: xu-cheng/latex-action@v3
+      with:
+        root_file: template/thesis.tex
 
     - name: Upload PDF
-      uses: ./github/actions/upload-artifact
+      uses: actions/upload-artifact@v4
       with:
         name: thesis-pdf
         path: template/thesis.pdf
