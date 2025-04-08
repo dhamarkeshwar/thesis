@@ -4,15 +4,22 @@ on:
   push:
     paths:
       - '**/*.tex'
+      - '**/*.cls'
+      - '**/*.bib'
   pull_request:
     paths:
       - '**/*.tex'
+      - '**/*.cls'
+      - '**/*.bib'
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
+    - name: List files before compilation
+      run: ls -R template/
+    
     - name: Checkout repository
       uses: actions/checkout@v4
 
@@ -20,7 +27,11 @@ jobs:
       uses: xu-cheng/latex-action@v3
       with:
         root_file: template/thesis.tex
+        working_directory: .
 
+    - name: Debug: Find the output PDF
+      run: find . -name "*.pdf"
+      
     - name: Upload PDF
       uses: actions/upload-artifact@v4
       with:
